@@ -1,0 +1,18 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block object-tools-items %}
+    <a href="/admin/filer/folder/" class="btn btn-success">
+        <i class="icon-folder-open icon-white"></i>
+        {% trans 'File browser' %}
+    </a>
+    <a href="export/" class="btn btn-success">
+        <i class="icon-circle-arrow-up icon-white"></i>
+        {% trans 'Export' %}
+    </a>
+    <a href="import/" class="btn btn-success">
+        <i class="icon-circle-arrow-down icon-white"></i>
+        {% trans 'Import' %}
+    </a>
+    {{ block.super }}
+{% endblock %}
