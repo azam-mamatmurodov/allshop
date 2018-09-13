@@ -12,7 +12,17 @@ from io import BytesIO
 from pyexcel_xlsx import get_data
 import pyexcel
 
-from apps.product.models import *
+from apps.product.models import (
+    Category,
+    Color,
+    Product,
+    ProductImage,
+    Variation,
+    Brands,
+    Review,
+    VolumeType,
+    Feature
+)
 from apps.account.models import Merchant
 from apps.product.forms import ImportForm
 
@@ -20,14 +30,14 @@ from apps.product.forms import ImportForm
 class CategoryAdmin(TranslatableAdmin, DraggableMPTTAdmin):
 
     def get_prepopulated_fields(self, request, obj=None):
-        return {'slug': ('name',),}
+        return {'slug': ('name',), }
 
     mptt_level_indent = 20
 
 
 class FeatureAdmin(TranslatableAdmin):
     def get_prepopulated_fields(self, request, obj=None):
-        return {'slug': ('name',),}
+        return {'slug': ('name',), }
 
 
 class VariationAdmin(admin.TabularInline):
@@ -59,7 +69,7 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 class ProductVariationAdmin(admin.ModelAdmin):
-    list_display = ['name', 'price', 'quantity', 'color',]
+    list_display = ['name', 'price', 'quantity', 'color', ]
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -176,7 +186,8 @@ class ProductAdmin(admin.ModelAdmin):
             request, "admin/products/products_import.html", payload
         )
 
-    def export_products(self, request):
+    @staticmethod
+    def export_products(request):
         if request.method == "POST":
             variations = Variation.objects.all()
             products = list()

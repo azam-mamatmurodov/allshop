@@ -55,7 +55,7 @@ def get_breadcrumbs(request, *args, **kwargs):
     paths = list()
     paths.append({
         'title': _('Shop'),
-        'path': reverse('main:home')
+        'path': reverse(' basic:home')
     })
     print(view_name)
     if view_name == 'users:profile':
@@ -130,14 +130,14 @@ def get_breadcrumbs(request, *args, **kwargs):
                 'title': category.name,
                 'path': reverse(view_name, args=[category.slug])
             })
-    elif view_name == 'main:static':
+    elif view_name == ' basic:static':
         arg = kwargs.get('slug')
         static_content = Static.objects.get(translations__slug=arg)
         paths.append({
             'title': static_content.name,
             'path': reverse(view_name, args=[arg]),
         })
-    elif view_name == 'main:static_footer':
+    elif view_name == ' basic:static_footer':
         arg = kwargs.get('slug')
         static_content = StaticFooterPage.objects.get(translations__slug=arg)
         paths.append({

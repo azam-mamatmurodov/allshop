@@ -5,7 +5,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 
-from apps.account.forms import *
+from apps.account.forms import LoginForm, RegisterForm, DeliveryAddressForm, PaymentMethodForm
 from apps.account.models import DeliveryAddress, PaymentCards
 from apps.order.models import Order
 
@@ -17,7 +17,7 @@ class LoginView(generic.FormView):
     def get_success_url(self):
         if 'next' in self.request.GET:
             return self.request.GET['next']
-        return reverse('main:home')
+        return reverse(' basic:home')
 
     def form_valid(self, form):
         username = form.cleaned_data.get('username')
@@ -41,7 +41,7 @@ class RegisterView(generic.FormView):
     success_url = None
 
     def get_success_url(self):
-        return reverse('main:home')
+        return reverse(' basic:home')
 
     def form_valid(self, form):
         user = form.save(commit=True)

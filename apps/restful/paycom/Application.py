@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from apps.payment.models import *
 from apps.order.models import Order as OrderModel
 from .Request import Request
 from .Response import Response

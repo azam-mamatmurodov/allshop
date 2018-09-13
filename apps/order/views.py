@@ -79,7 +79,7 @@ class CartView(ListView):
 
     def dispatch(self, request, *args, **kwargs):
         if get_cart_items(request=request).count() == 0:
-            return redirect(reverse('main:home'))
+            return redirect(reverse(' basic:home'))
         return super().dispatch(request=request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -98,7 +98,7 @@ class OrderAddressView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if get_cart_items(request=request).count() == 0:
-            return redirect(reverse('main:home'))
+            return redirect(reverse(' basic:home'))
         return super().dispatch(request=request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -172,7 +172,7 @@ class CheckoutView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if get_cart_items(request=request).count() == 0:
-            return redirect(reverse('main:home'))
+            return redirect(reverse(' basic:home'))
         if not request.COOKIES.get('client_data'):
             return redirect(reverse('orders:address'))
         client_data = cookie_parser(request.COOKIES.get('client_data'))
@@ -266,7 +266,7 @@ class CheckoutView(TemplateView):
                 ac_order_id = order.id
                 ac_customer_id = order.phone
                 amount = int(order.total_price.real) * 100
-                redirect_url_after_operation = reverse_lazy('main:home')
+                redirect_url_after_operation = reverse_lazy(' basic:home')
                 ct = 15
                 cr = 860
                 data = "m={};ac.order_id={};ac.customer_id={};a={};c={}".format(merchant_id, ac_order_id,
@@ -278,8 +278,8 @@ class CheckoutView(TemplateView):
             elif order.payment.method == PaymentMethod.UZCARD:
                 return redirect(reverse('orders:payment_uzcard', args=[order.phone, order.order_unique_id]))
             else:
-                return redirect(reverse('main:home'))
-        return redirect(reverse('main:home'))
+                return redirect(reverse(' basic:home'))
+        return redirect(reverse(' basic:home'))
 
 
 class OrderDetail(DetailView):
