@@ -29,7 +29,7 @@ Jinja2==2.10
 lml==0.0.1
 Markdown==2.6.11
 MarkupSafe==1.0
-numpy==1.14.2
+numpy==1.22.0
 odfpy==1.3.6
 openapi-codec==1.3.2
 openpyxl==2.5.0
